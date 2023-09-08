@@ -8,13 +8,13 @@ import {KTIcon} from '../../../../_metronic/helpers'
 import {StepperComponent} from '../../../../_metronic/assets/ts/components'
 import {Form, Formik, FormikValues} from 'formik'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
-import {createAccountSchemas, ICreateAccount, inits} from './CreateAccountWizardHelper'
+import {createAccountSchemas, ICreateCoverLetter, inits} from './CreateAccountWizardHelper'
 import { useGenerateCoverLetterMutation } from '../../../service/user_api'
 const Horizontal: FC = () => {
   const stepperRef = useRef<HTMLDivElement | null>(null)
   const stepper = useRef<StepperComponent | null>(null)
   const [currentSchema, setCurrentSchema] = useState(createAccountSchemas[0])
-  const [initValues] = useState<ICreateAccount>(inits)
+  const [initValues] = useState<ICreateCoverLetter>(inits)
   const [isSubmitButton, setSubmitButton] = useState(false)
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [generateCoverLetter,{data,isLoading,isError,error,isSuccess}]=useGenerateCoverLetterMutation()
@@ -23,28 +23,29 @@ const Horizontal: FC = () => {
   
  
 
-  const loadStepper = () => {
-    stepper.current = StepperComponent.createInsance(stepperRef.current as HTMLDivElement)
-  }
+  // const loadStepper = () => {
+  //   stepper.current = StepperComponent.createInsance(stepperRef.current as HTMLDivElement)
+  // }
 
-  const prevStep = () => {
-    if (!stepper.current) {
-      return
-    }
+  // const prevStep = () => {
+  //   if (!stepper.current) {
+  //     return
+  //   }
 
-    stepper.current.goPrev()
+  //   stepper.current.goPrev()
 
-    setCurrentSchema(createAccountSchemas[stepper.current.currentStepIndex - 1])
+  //   setCurrentSchema(createAccountSchemas[stepper.current.currentStepIndex - 1])
 
-    setSubmitButton(stepper.current.currentStepIndex === stepper.current.totalStepsNumber)
-  }
+  //   setSubmitButton(stepper.current.currentStepIndex === stepper.current.totalStepsNumber)
+  // }
 
-  const submitStep = (values: ICreateAccount, actions: FormikValues) => {
+  const submitStep = (values: ICreateCoverLetter, actions: FormikValues) => {
+    console.log(values)
   btnRef.current?.setAttribute('data-kt-indicator', 'on');
   generateCoverLetter({
-    job_title:"Nodejs",
-    company_name:"Google",
-    skill_highlight:"API development, Database design, expressjs"
+    job_title:values.jobTitle,
+    company_name:values.companyName,
+    skill_highlight:values.skillHighlight
   })
     // if (!stepper.current) {
     //   return
@@ -62,19 +63,27 @@ const Horizontal: FC = () => {
     // setCurrentSchema(createAccountSchemas[stepper.current.currentStepIndex - 1])
   }
   useEffect(()=>{
-    btnRef.current?.removeAttribute("data-kt-indicator");
+    console.log("data is")
+    if(isError||isSuccess){
+      btnRef.current?.removeAttribute("data-kt-indicator");
+    }
     if(isSuccess){
       setCoverLetter(data)
-      setShowSnippet(!showSnippet);
+      setShowSnippet(true);
     }
-    },[data])
-  useEffect(() => {
-    if (!stepperRef.current) {
-      return
+    if(isLoading){
+      setShowSnippet(false);
     }
+    },[isSuccess,isError,isLoading])
 
-    loadStepper()
-  }, [stepperRef])
+  
+  // useEffect(() => {
+  //   if (!stepperRef.current) {
+  //     return
+  //   }
+
+  //   loadStepper()
+  // }, [stepperRef])
   const [copied, setCopied] = useState(false)
   useEffect(() => {
     if (!copied) {
@@ -153,7 +162,7 @@ const Horizontal: FC = () => {
                   </div> */}
 
                   <div>
-                    <button ref={btnRef} type='submit' className='btn btn-lg btn-primary me-3'>
+                    <button ref={btnRef} type='submit' className='btn btn-lg btn-primary me-3' id="kt_button_1">
                       {/* <span className='indicator-label'> */}
                       {/* {!isSubmitButton && 'Generate'}
                         {isSubmitButton && 'Loading'} */}

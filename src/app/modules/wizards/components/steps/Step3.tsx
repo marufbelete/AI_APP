@@ -19,9 +19,9 @@ const Step3: FC = () => {
       <div className='fv-row mb-10'>
         <label className='form-label required'>The job title you are applying for</label>
 
-        <Field name='businessName' className='form-control form-control-lg form-control-solid' />
+        <Field name='jobTitle' className='form-control form-control-lg form-control-solid' />
         <div className='text-danger mt-2'>
-          <ErrorMessage name='businessName' />
+          <ErrorMessage name='jobTitle' />
         </div>
       </div>
 
@@ -31,11 +31,11 @@ const Step3: FC = () => {
         </label>
 
         <Field
-          name='businessDescriptor'
+          name='companyName'
           className='form-control form-control-lg form-control-solid'
         />
         <div className='text-danger mt-2'>
-          <ErrorMessage name='businessDescriptor' />
+          <ErrorMessage name='companyName' />
         </div>
 
         {/* <div className='form-text'>
@@ -69,7 +69,7 @@ const Step3: FC = () => {
 
         <Field
           as='textarea'
-          name='businessDescription'
+          name='skillHighlight'
           className='form-control form-control-lg form-control-solid'
           rows={6}
         ></Field>

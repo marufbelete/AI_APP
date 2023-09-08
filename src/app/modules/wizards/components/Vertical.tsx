@@ -8,14 +8,14 @@ import {KTIcon} from '../../../../_metronic/helpers'
 import {StepperComponent} from '../../../../_metronic/assets/ts/components'
 import {Form, Formik, FormikValues} from 'formik'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
-import {createAccountSchemas, ICreateAccount, inits} from './CreateAccountWizardHelper'
+import {createAccountSchemas, ICreateCoverLetter, inits} from './CreateAccountWizardHelper'
 import { useGenerateCoverLetterMutation } from '../../../service/user_api'
 
 const Vertical = () => {
   const stepperRef = useRef<HTMLDivElement | null>(null)
   const stepper = useRef<StepperComponent | null>(null)
   const [currentSchema, setCurrentSchema] = useState(createAccountSchemas[0])
-  const [initValues] = useState<ICreateAccount>(inits)
+  const [initValues] = useState<ICreateCoverLetter>(inits)
   const [isSubmitButton, setSubmitButton] = useState(false)
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const [generateCoverLetter,{data,isLoading,isError,error,isSuccess}]=useGenerateCoverLetterMutation()
@@ -40,12 +40,12 @@ const Vertical = () => {
     setSubmitButton(stepper.current.currentStepIndex === stepper.current.totalStepsNumber)
   }
 
-  const submitStep = (values: ICreateAccount, actions: FormikValues) => {
+  const submitStep = (values: ICreateCoverLetter, actions: FormikValues) => {
   btnRef.current?.setAttribute('data-kt-indicator', 'on');
   generateCoverLetter({
-    job_title:"Nodejs",
-    company_name:"Google",
-    skill_highlight:"API development, Database design, expressjs"
+    job_title:values.jobTitle,
+    company_name:values.companyName,
+    skill_highlight:values.skillHighlight
   })
     // if (!stepper.current) {
     //   return
