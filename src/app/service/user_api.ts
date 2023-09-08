@@ -5,7 +5,7 @@ export const userApi=createApi({
     tagTypes:["Auth"],
     baseQuery:fetchBaseQuery({
         // baseUrl:"http://localhost:7000/api",
-        baseUrl:"https://ai-api-l8mn.onrender.com",
+        baseUrl:"https://ai-api-l8mn.onrender.com/api",
         credentials: "include",
     }),
         endpoints:(builder)=>({
