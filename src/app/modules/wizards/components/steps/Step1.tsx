@@ -30,7 +30,7 @@ const Step1: FC = () => {
       </div>
 
       <div className='fv-row mb-10 mt-3'>
-        <label className='form-label'>The skills/job experience you would like to highlight about yourself</label>
+        <label className='form-label required'>The skills/job experience you would like to highlight about yourself</label>
 
         <Field
           as='textarea'
