@@ -4,12 +4,13 @@ import {Step2} from './steps/Step2'
 import {Step3} from './steps/Step3'
 import {Step4} from './steps/Step4'
 import {Step5} from './steps/Step5'
+import {Step6} from './steps/Step6'
 import {KTIcon} from '../../../../_metronic/helpers'
 import {StepperComponent} from '../../../../_metronic/assets/ts/components'
 import {Form, Formik, FormikValues} from 'formik'
-import {CopyToClipboard} from 'react-copy-to-clipboard'
 import {createAccountSchemas, ICreateCoverLetter, inits} from './CreateAccountWizardHelper'
 import { useGenerateCoverLetterMutation } from '../../../service/user_api'
+// import { fetchEventSource } from  "@microsoft/fetch-event-source";
 
 const Vertical = () => {
   const stepperRef = useRef<HTMLDivElement | null>(null)
@@ -22,6 +23,7 @@ const Vertical = () => {
   const [coverLetter, setCoverLetter] = useState('');
   const [showSnippet, setShowSnippet] = useState(false);
   
+  // const SSE_URL = 'http://localhost:7000/api/ai/coverletter'
  
 
   const loadStepper = () => {
@@ -32,35 +34,70 @@ const Vertical = () => {
     if (!stepper.current) {
       return
     }
-
+    setCoverLetter('')
     stepper.current.goPrev()
-
     setCurrentSchema(createAccountSchemas[stepper.current.currentStepIndex - 1])
-
-    setSubmitButton(stepper.current.currentStepIndex === stepper.current.totalStepsNumber)
+    setSubmitButton(stepper.current.currentStepIndex+1 === stepper.current.totalStepsNumber)
   }
 
   const submitStep = (values: ICreateCoverLetter, actions: FormikValues) => {
+   console.log( stepper?.current?.currentStepIndex , stepper.current?.totalStepsNumber)
+  
+    
   btnRef.current?.setAttribute('data-kt-indicator', 'on');
-  generateCoverLetter({
-    job_title:values.jobTitle,
-    company_name:values.companyName,
-    skill_highlight:values.skillHighlight
-  })
-    // if (!stepper.current) {
-    //   return
-    // }
+ 
+    if (!stepper.current) {
+      return
+    }
 
-    // if (stepper.current.currentStepIndex !== stepper.current.totalStepsNumber) {
-    //   stepper.current.goNext()
-    // } else {
-    //   stepper.current.goto(1)
-    //   actions.resetForm()
-    // }
+    if (stepper.current.currentStepIndex !== stepper.current.totalStepsNumber-1) {
+      stepper.current.goNext()
+    } else {
+      // stepper.current.goto(1)
+      // actions.resetForm()
+      console.log("send api")
+      setCoverLetter('')
+       generateCoverLetter({
+      job_title:values.jobTitle,
+      company_name:values.companyName,
+      skill_highlight:values.skillHighlight
+    })
+    stepper.current.goNext()
+    // const fetchData = async () => {
+    //   await fetchEventSource(SSE_URL, {
+    //     method: "POST",
+    //     body:JSON.stringify({
+    //       job_title:"nodejs developer",
+    //       company_name:"google",
+    //       skill_highlight:"API developmetn"
+    //     }),
+    //     headers: {
+    //       Accept: "text/event-stream",
+    //       "Content-Type": "application/json"
+          
+    //     },
+    //     onmessage(event) {
+    //       console.log(event.data);
+    //       const parsedData = JSON.parse(event.data);
+    //       setCoverLetter((data) => data+parsedData);
+    //     },
+    //     onclose() {
 
-    // setSubmitButton(stepper.current.currentStepIndex === stepper.current.totalStepsNumber)
+    //       console.log("Connection closed by the server");
+    //     },
+    //     onerror(err) {
+    //       throw err
+    //       console.log("There was an error from server", err);
+    //     },
+    //   });
+    // };
+    // fetchData();
+    }
 
-    // setCurrentSchema(createAccountSchemas[stepper.current.currentStepIndex - 1])
+    setSubmitButton(stepper.current.currentStepIndex+1 === stepper.current.totalStepsNumber)
+
+    setCurrentSchema(createAccountSchemas[stepper.current.currentStepIndex - 1])
+   
   }
   useEffect(()=>{
     btnRef.current?.removeAttribute("data-kt-indicator");
@@ -69,53 +106,48 @@ const Vertical = () => {
       setShowSnippet(!showSnippet);
     }
     },[data])
+
   useEffect(() => {
     if (!stepperRef.current) {
       return
     }
-
     loadStepper()
   }, [stepperRef])
-  const [copied, setCopied] = useState(false)
-  useEffect(() => {
-    if (!copied) {
-      return
-    }
 
-    setTimeout(() => {
-      setCopied(false)
-    }, 1500)
-  }, [copied])
+  // useEffect(() => {
+    
+  // }, []);
+
 
   return (
     <div className='card'>
       <div className='card-body'>
         <div
-          // ref={stepperRef}
+          ref={stepperRef}
           className='stepper stepper-links d-flex flex-column pt-15'
           id='kt_create_account_stepper'
         >
-          {/* <div className='stepper-nav mb-5'>
+          <div className='stepper-nav mb-5'>
             <div className='stepper-item current' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Account Type</h3>
+              <h3 className='stepper-title'>Personal Info</h3>
             </div>
 
             <div className='stepper-item' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Account Info</h3>
+              <h3 className='stepper-title'>Job Info</h3>
             </div>
 
-            <div className='stepper-item' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Business Info</h3>
+           <div className='stepper-item' data-kt-stepper-element='nav'>
+              <h3 className='stepper-title'>Cover Letter</h3>
             </div>
-
+ {/* 
             <div className='stepper-item' data-kt-stepper-element='nav'>
               <h3 className='stepper-title'>Billing Details</h3>
             </div>
 
             <div className='stepper-item' data-kt-stepper-element='nav'>
               <h3 className='stepper-title'>Completed</h3>
-            </div>
-          </div> */}
+            </div> */}
+          </div>
 
           <Formik validationSchema={currentSchema} initialValues={initValues} onSubmit={submitStep}>
             {() => (
@@ -126,22 +158,25 @@ const Vertical = () => {
 
                 <div data-kt-stepper-element='content'>
                   <Step2 />
-                </div>
-
-                <div data-kt-stepper-element='content'>
-                  <Step4 />
                 </div> */}
-
+                
                 <div className='current' data-kt-stepper-element='content'>
                   <Step3 />
                 </div>
+                <div data-kt-stepper-element='content'>
+                  <Step1 />
+                </div>
+                <div data-kt-stepper-element='content'>
+                  <Step6 coverLetter={coverLetter}/>
+                </div>
+               
 {/* 
                 <div data-kt-stepper-element='content'>
                   <Step5 />
                 </div> */}
 
-                <div className='d-flex flex-center pt-15'>
-                  {/* <div className='mr-2'>
+                <div className='d-flex flex-stack pt-15'>
+                {!isLoading &&<div className='mr-2'>
                     <button
                       onClick={prevStep}
                       type='button'
@@ -151,42 +186,37 @@ const Vertical = () => {
                       <KTIcon iconName='arrow-left' className='fs-4 me-1' />
                       Back
                     </button>
-                  </div> */}
+                  </div>}
 
-                  <div>
+
+                 {!isLoading && !coverLetter && <div>
+                    <button type='submit' className='btn btn-lg btn-primary me-3'>
+                      <span className='indicator-label'>
+                        {!isSubmitButton && 'Continue'}
+                        {isSubmitButton && 'Generate'}
+                        <KTIcon iconName='arrow-right' className='fs-3 ms-2 me-0' />
+                      </span>
+                    </button>
+                  </div>}
+
+                  {/* <div>
                     <button ref={btnRef} type='submit' className='btn btn-lg btn-primary me-3'>
-                      {/* <span className='indicator-label'> */}
-                      {/* {!isSubmitButton && 'Generate'}
-                        {isSubmitButton && 'Loading'} */}
+                      <span className='indicator-label'>
+                      {!isSubmitButton && 'Continue'}
+                        {isSubmitButton && 'Generate'}
+                      
                         <span className="indicator-label">Generate</span>
                         <span className="indicator-progress">Please wait... 
                         <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
                         </span>
                         {!isLoading&&<KTIcon iconName='arrow-right' className='fs-3 ms-2 me-0' />}
-                      {/* </span> */}
+                        </span>
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </Form>
             )}
-          </Formik>
-          {showSnippet && <div className='d-flex flex-center'>
-          <div>
-          <h2 className='fw-bolde text-dark'>COVER LETTER</h2>
-      <div className='card card-body bg-dark w-800px min-h-250px'>
-      <div className='text-gray-400 fw-bold fs-4 d-flex justify-content-end p-0'>
-            <CopyToClipboard text={coverLetter} onCopy={() => setCopied(true)}>
-            <a className='highlight-copy btn'>{copied ? 'copied' : <i className="far fa-copy text-primary"></i>}</a>
-          </CopyToClipboard>
-            </div>
-          <div className='text-gray-400 fw-bold fs-4 mt-2 mb-10'>
-         {coverLetter}
-      </div>
-      </div>
-        </div>
-          </div>
-}
-         
+          </Formik>       
         
       </div>
         </div>

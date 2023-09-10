@@ -74,13 +74,13 @@ const AuthLayout = () => {
           {/* end::Image */}
 
           {/* begin::Title */}
-          <h1 className='text-white fs-2qx fw-bolder text-center mb-7'>
+          <h1 className='text-white fs-2qx fw-bolder text-center mb-7 pb-5'>
             Fast, Efficient and Productive
           </h1>
           {/* end::Title */}
 
           {/* begin::Text */}
-          <div className='text-white fs-base text-center'>
+          {/* <div className='text-white fs-base text-center'>
             In this kind of post,{' '}
             <a href='#' className='opacity-75-hover text-warning fw-bold me-1'>
               the blogger
@@ -91,7 +91,7 @@ const AuthLayout = () => {
               the interviewee
             </a>
             and their <br /> work following this is a transcript of the interview.
-          </div>
+          </div> */}
           {/* end::Text */}
         </div>
         {/* end::Content */}

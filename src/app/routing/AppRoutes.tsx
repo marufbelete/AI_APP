@@ -20,7 +20,10 @@ import {App} from '../App'
 const {PUBLIC_URL} = process.env
 
 const AppRoutes: FC = () => {
+  console.log("app route")
+ 
   const {currentUser} = useAuth()
+  console.log(currentUser)
   return (
     <BrowserRouter basename={PUBLIC_URL}>
       <Routes>

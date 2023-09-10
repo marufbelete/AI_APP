@@ -5,11 +5,12 @@ import {useFormik} from 'formik'
 import * as Yup from 'yup'
 import clsx from 'clsx'
 import {getUserByToken, register} from '../core/_requests'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {PasswordMeterComponent} from '../../../../_metronic/assets/ts/components'
 import {useAuth} from '../core/Auth'
-
+import { useRegisterUserMutation } from '../../../service/user_api'
+import { BarWave } from 'react-cssfx-loading'
 const initialValues = {
   firstname: '',
   lastname: '',
@@ -46,6 +47,8 @@ const registrationSchema = Yup.object().shape({
 })
 
 export function Registration() {
+  const navigate = useNavigate();
+  const [registerUser,{data,isLoading,isError,error,isSuccess}]=useRegisterUserMutation()
   const [loading, setLoading] = useState(false)
   const {saveAuth, setCurrentUser} = useAuth()
   const formik = useFormik({
@@ -53,30 +56,46 @@ export function Registration() {
     validationSchema: registrationSchema,
     onSubmit: async (values, {setStatus, setSubmitting}) => {
       setLoading(true)
-      try {
-        const {data: auth} = await register(
-          values.email,
-          values.firstname,
-          values.lastname,
-          values.password,
-          values.changepassword
-        )
-        saveAuth(auth)
-        const {data: user} = await getUserByToken(auth.api_token)
-        setCurrentUser(user)
-      } catch (error) {
-        console.error(error)
-        saveAuth(undefined)
-        setStatus('The registration details is incorrect')
-        setSubmitting(false)
-        setLoading(false)
-      }
+      registerUser({
+        email:values.email,
+        first_name:values.firstname,
+        last_name:values.lastname,
+        password:values.password
+      })
+      // try {
+      //   const {data: auth} = await register(
+      //     values.email,
+      //     values.firstname,
+      //     values.lastname,
+      //     values.password,
+      //     values.changepassword
+      //   )
+      //   saveAuth(auth)
+      //   const {data: user} = await getUserByToken(auth.api_token)
+      //   setCurrentUser(user)
+      // } catch (error) {
+      //   console.error(error)
+      //   saveAuth(undefined)
+      //   setStatus('The registration details is incorrect')
+      //   setSubmitting(false)
+      //   setLoading(false)
+      // }
     },
   })
 
   useEffect(() => {
     PasswordMeterComponent.bootstrap()
   }, [])
+
+  useEffect(() => {
+    if(isSuccess){
+      saveAuth(data)
+      navigate('/login');
+    }
+    if(isError){
+      setLoading(false)
+    }
+  }, [isLoading,isError,isSuccess])
 
   return (
     <form
@@ -149,6 +168,12 @@ export function Registration() {
           <div className='alert-text font-weight-bold'>{formik.status}</div>
         </div>
       )}
+      {isError&&<div className='mb-10 bg-light-info p-4 rounded'>
+          <div className='text-danger text-center'>
+          {(error as any).data?.message||"connection error, please try again"}
+          </div>
+        </div>
+        }
 
       {/* begin::Form group Firstname */}
       <div className='fv-row mb-8'>
@@ -306,7 +331,7 @@ export function Registration() {
       {/* end::Form group */}
 
       {/* begin::Form group */}
-      <div className='fv-row mb-8'>
+      {/* <div className='fv-row mb-8'>
         <label className='form-check form-check-inline' htmlFor='kt_login_toc_agree'>
           <input
             className='form-check-input'
@@ -333,7 +358,7 @@ export function Registration() {
             </div>
           </div>
         )}
-      </div>
+      </div> */}
       {/* end::Form group */}
 
       {/* begin::Form group */}
@@ -341,26 +366,27 @@ export function Registration() {
         <button
           type='submit'
           id='kt_sign_up_submit'
-          className='btn btn-lg btn-primary w-100 mb-5'
-          disabled={formik.isSubmitting || !formik.isValid || !formik.values.acceptTerms}
+          className='btn btn-lg btn-primary w-100 mb-5 d-flex flex-center'
+          disabled={formik.isSubmitting || !formik.isValid }
         >
           {!loading && <span className='indicator-label'>Submit</span>}
           {loading && (
-            <span className='indicator-progress' style={{display: 'block'}}>
-              Please wait...{' '}
-              <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
-            </span>
+            <BarWave  color='yellow'/>
+            // <span className='indicator-progress' style={{display: 'block'}}>
+            //   Please wait...{' '}
+            //   <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
+            // </span>
           )}
         </button>
-        <Link to='/auth/login'>
+        {!isLoading && <Link to='/auth/login'>
           <button
             type='button'
             id='kt_login_signup_form_cancel_button'
             className='btn btn-lg btn-light-primary w-100 mb-5'
           >
-            Cancel
+            Login
           </button>
-        </Link>
+        </Link>}
       </div>
       {/* end::Form group */}
     </form>

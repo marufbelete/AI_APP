@@ -3,17 +3,22 @@ import * as Yup from 'yup'
 export interface ICreateCoverLetter {
   jobTitle:string,
   companyName:string,
-  skillHighlight:string
+  skillHighlight:string,
+  fullName:string,
+  resume:string,
+  yearExperince:string
 }
 
 const createAccountSchemas = [
   Yup.object({
-    jobTitle: Yup.string().required().label('jobTitle'),
-    companyName: Yup.string().required().label('jobTitle'),
-    skillHighlight: Yup.string().required().label('jobTitle'),
+    fullName: Yup.string().required().label('full name'),
+    companyName: Yup.string().required().label('company name'),
+    // : Yup.string().required().label('company name'),
   }),
   // Yup.object({
-  //   accountName: Yup.string().required().label('Account Name'),
+  //   jobTitle: Yup.string().required().label('job title'),
+  //   skillHighlight: Yup.string().required().label('skill highlight'),
+  //   resume: Yup.string().required().label('resume'),
   // }),
   // Yup.object({
   //   businessName: Yup.string().required().label('Business Name'),
@@ -33,7 +38,11 @@ const createAccountSchemas = [
 const inits: ICreateCoverLetter = {
   jobTitle:'',
   companyName:'',
-  skillHighlight:''
+  skillHighlight:'',
+  fullName:'',
+  resume:'',
+  yearExperince:''
+
 
 }
 

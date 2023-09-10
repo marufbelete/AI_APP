@@ -6,7 +6,43 @@ import {ErrorMessage, Field} from 'formik'
 const Step1: FC = () => {
   return (
     <div className='w-100'>
-      <div className='pb-10 pb-lg-15'>
+
+        <div className='fv-row mb-10'>
+        <label className='form-label required'>The job title you are applying for</label>
+
+        <Field name='jobTitle' className='form-control form-control-lg form-control-solid h-60px' />
+        <div className='text-danger mt-2'>
+          <ErrorMessage name='jobTitle' />
+        </div>
+      </div>
+
+       <div className='fv-row mb-10 mt-3'>
+        <label className='form-label'>Your resume </label>
+        <Field
+          as='textarea'
+          name='resume'
+          className='form-control form-control-lg form-control-solid'
+          rows={6}
+        ></Field>
+        {/* <div className='text-danger mt-2'>
+          <ErrorMessage name='resume' />
+        </div> */}
+      </div>
+
+      <div className='fv-row mb-10 mt-3'>
+        <label className='form-label'>The skills/job experience you would like to highlight about yourself</label>
+
+        <Field
+          as='textarea'
+          name='skillHighlight'
+          className='form-control form-control-lg form-control-solid'
+          rows={6}
+        ></Field>
+        {/* <div className='text-danger mt-2'>
+          <ErrorMessage name='skillHighlight' />
+        </div> */}
+      </div>
+      {/* <div className='pb-10 pb-lg-15'>
         <h2 className='fw-bolder d-flex align-items-center text-dark'>
           Choose Account Type
           <i
@@ -78,8 +114,8 @@ const Step1: FC = () => {
             <ErrorMessage name='accountType' />
           </div>
         </div>
-      </div>
-    </div>
+      </div> */}
+    </div> 
   )
 }
 

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import * as Yup from 'yup'
 import clsx from 'clsx'
 import {Link} from 'react-router-dom'
@@ -7,6 +7,8 @@ import {useFormik} from 'formik'
 import {getUserByToken, login} from '../core/_requests'
 import {toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {useAuth} from '../core/Auth'
+import { useLoginUserMutation } from '../../../service/user_api'
+import { BarWave } from 'react-cssfx-loading'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -34,27 +36,41 @@ const initialValues = {
 export function Login() {
   const [loading, setLoading] = useState(false)
   const {saveAuth, setCurrentUser} = useAuth()
+  const [loginUser,{data,isLoading,isError,error,isSuccess}]=useLoginUserMutation()
 
   const formik = useFormik({
     initialValues,
     validationSchema: loginSchema,
     onSubmit: async (values, {setStatus, setSubmitting}) => {
       setLoading(true)
-      try {
-        const {data: auth} = await login(values.email, values.password)
-        saveAuth(auth)
-        const {data: user} = await getUserByToken(auth.api_token)
-        setCurrentUser(user)
-      } catch (error) {
-        console.error(error)
-        saveAuth(undefined)
-        setStatus('The login details are incorrect')
-        setSubmitting(false)
-        setLoading(false)
-      }
+      loginUser({
+        email:values.email, 
+        password:values.password
+      })
+      // try {
+      //   const {data: auth} = await login(values.email, values.password)
+      //   saveAuth(auth)
+      //   const {data: user} = await getUserByToken(auth.api_token)
+      //   setCurrentUser(user)
+      // } catch (error) {
+      //   console.error(error)
+      //   saveAuth(undefined)
+      //   setStatus('The login details are incorrect')
+      //   setSubmitting(false)
+      //   setLoading(false)
+      // }
     },
   })
-
+  useEffect(() => {
+    if(isSuccess){
+      saveAuth(data)
+      setCurrentUser(data?.user)
+    }
+    if(isError){
+      setLoading(false)
+    }
+  }, [isLoading,isError,isSuccess])
+  console.log(error)
   return (
     <form
       className='form w-100'
@@ -120,18 +136,24 @@ export function Login() {
       </div>
       {/* end::Separator */}
 
-      {formik.status ? (
+      {/* {formik.status ? (
         <div className='mb-lg-15 alert alert-danger'>
           <div className='alert-text font-weight-bold'>{formik.status}</div>
         </div>
       ) : (
-        <div className='mb-10 bg-light-info p-8 rounded'>
-          <div className='text-info'>
-            Use account <strong>admin@demo.com</strong> and password <strong>demo</strong> to
-            continue.
+        <div className='mb-10 bg-light-info p-4 rounded'>
+          <div className='text-danger text-center'>
+            error info
           </div>
         </div>
-      )}
+      )} */}
+
+       {isError&&<div className='mb-10 bg-light-info p-4 rounded'>
+          <div className='text-danger text-center'>
+          {(error as any).data?.message||"connection error, please try again"}
+          </div>
+        </div>
+        }
 
       {/* begin::Form group */}
       <div className='fv-row mb-8'>
@@ -190,9 +212,9 @@ export function Login() {
         <div />
 
         {/* begin::Link */}
-        <Link to='/auth/forgot-password' className='link-primary'>
+        {/* <Link to='/auth/forgot-password' className='link-primary'>
           Forgot Password ?
-        </Link>
+        </Link> */}
         {/* end::Link */}
       </div>
       {/* end::Wrapper */}
@@ -202,15 +224,12 @@ export function Login() {
         <button
           type='submit'
           id='kt_sign_in_submit'
-          className='btn btn-primary'
+          className='btn btn-primary d-flex flex-center'
           disabled={formik.isSubmitting || !formik.isValid}
         >
           {!loading && <span className='indicator-label'>Continue</span>}
           {loading && (
-            <span className='indicator-progress' style={{display: 'block'}}>
-              Please wait...
-              <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
-            </span>
+            <BarWave  color='yellow'/>
           )}
         </button>
       </div>

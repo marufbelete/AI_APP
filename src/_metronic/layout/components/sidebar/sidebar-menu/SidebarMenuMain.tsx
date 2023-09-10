@@ -16,18 +16,29 @@ const SidebarMenuMain = () => {
         title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
         fontIcon='bi-app-indicator'
       />
+      
       {/* <SidebarMenuItem to='/builder' icon='switch' title='Layout Builder' fontIcon='bi-layers' /> */}
       <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>APPS</span>
         </div>
       </div>
-      <SidebarMenuItemWithSub
+      <SidebarMenuItem
+          title='Prompt Finder'
+          icon='element-plus'
+          to='/crafted/pages/wizards/horizontal'
+        />
+      <SidebarMenuItem
+          title='Cover Letter'
+          icon='element-plus'
+          to='/crafted/pages/wizards/vertical'
+        />
+      {/* <SidebarMenuItemWithSub
         to='/crafted/pages'
         title='Service'
         fontIcon='bi-archive'
         icon='element-plus'
-      >
+      > */}
         {/* <SidebarMenuItemWithSub to='/crafted/pages/profile' title='Profile' hasBullet={true}>
           <SidebarMenuItem to='/crafted/pages/profile/overview' title='Overview' hasBullet={true} />
           <SidebarMenuItem to='/crafted/pages/profile/projects' title='Projects' hasBullet={true} />
@@ -48,7 +59,7 @@ const SidebarMenuMain = () => {
           />
         </SidebarMenuItemWithSub> */}
 
-        <SidebarMenuItemWithSub to='/crafted/pages/wizards' title='AI' hasBullet={true}>
+        {/* <SidebarMenuItemWithSub to='/crafted/pages/wizards' title='AI' hasBullet={true}>
           <SidebarMenuItem
             to='/crafted/pages/wizards/horizontal'
             title='Cover Letter'
@@ -56,7 +67,7 @@ const SidebarMenuMain = () => {
           />
           <SidebarMenuItem to='/crafted/pages/wizards/vertical' title='Prompt Finder' hasBullet={true} />
         </SidebarMenuItemWithSub>
-      </SidebarMenuItemWithSub>
+      </SidebarMenuItemWithSub> */}
       {/* <SidebarMenuItemWithSub
         to='/crafted/accounts'
         title='Accounts'

@@ -9,21 +9,30 @@ export function MenuInner() {
     <>
       <MenuItem title={intl.formatMessage({id: 'MENU.DASHBOARD'})} to='/dashboard' />
       {/* <MenuItem title='Layout Builder' to='/builder' /> */}
-      <MenuInnerWithSub
+      <MenuItem
+          title='Cover Letter'
+          to='/crafted/pages/wizards/vertical'
+        />
+      <MenuItem
+          title='Prompt Finder'
+          to='/crafted/pages/wizards/horizontal'
+        />
+      {/* <MenuInnerWithSub
         title='Apps'
         to='/crafted'
         menuPlacement='bottom-start'
         menuTrigger='click'
-      >
+      > */}
         {/* PAGES */}
-        <MenuInnerWithSub
+        {/* <MenuInnerWithSub
           title='Service'
           to='/crafted/pages'
           fontIcon='bi-archive'
           hasArrow={true}
           menuPlacement='right-start'
           menuTrigger={`{default:'click', lg: 'hover'}`}
-        >
+        > */}
+        
           {/* <MenuInnerWithSub
             title='Profile'
             to='/crafted/pages/profile'
@@ -42,7 +51,7 @@ export function MenuInner() {
               hasBullet={true}
             />
           </MenuInnerWithSub> */}
-          <MenuInnerWithSub
+          {/* <MenuInnerWithSub
             title='AI'
             to='/crafted/pages/wizards'
             hasArrow={true}
@@ -53,7 +62,7 @@ export function MenuInner() {
             <MenuItem to='/crafted/pages/wizards/horizontal' title='Cover Letter' hasBullet={true} />
             <MenuItem to='/crafted/pages/wizards/vertical' title='Vertical' hasBullet={true} />
           </MenuInnerWithSub>
-        </MenuInnerWithSub>
+        </MenuInnerWithSub> */}
 
         {/* ACCOUNT */}
         {/* <MenuInnerWithSub
@@ -82,7 +91,7 @@ export function MenuInner() {
         </MenuInnerWithSub> */}
 
         {/* Widgets */}
-        <MenuInnerWithSub
+        {/* <MenuInnerWithSub
           title='Widgets'
           to='/crafted/widgets'
           fontIcon='bi-layers'
@@ -97,7 +106,7 @@ export function MenuInner() {
           <MenuItem to='/crafted/widgets/tables' title='Tables' hasBullet={true} />
           <MenuItem to='/crafted/widgets/feeds' title='Feeds' hasBullet={true} />
         </MenuInnerWithSub>
-      </MenuInnerWithSub>
+      </MenuInnerWithSub> */}
 
       {/* <MenuInnerWithSub title='Apps' to='/apps' menuPlacement='bottom-start' menuTrigger='click'> */}
         {/* PAGES */}

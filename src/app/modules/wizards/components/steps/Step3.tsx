@@ -3,7 +3,7 @@ import {Field, ErrorMessage} from 'formik'
 
 const Step3: FC = () => {
   return (
-    <div className='w-90'>
+    <div className='w-100'>
       <div className='pb-10 pb-lg-12'>
         <h2 className='fw-bolder text-dark'>AI COVER LETTER WRITER</h2>
 
@@ -17,12 +17,20 @@ const Step3: FC = () => {
       </div>
 
       <div className='fv-row mb-10'>
-        <label className='form-label required'>The job title you are applying for</label>
+        <label className='form-label required'>Your Full Name</label>
 
-        <Field name='jobTitle' className='form-control form-control-lg form-control-solid' />
+        <Field name='fullName' className='form-control form-control-lg form-control-solid h-60px' />
         <div className='text-danger mt-2'>
-          <ErrorMessage name='jobTitle' />
+          <ErrorMessage name='fullName' />
         </div>
+      </div>
+
+      <div className='fv-row mb-10'>
+        <label className='form-label'>Year Of Experince</label>
+        <Field name='yearExperince' className='form-control form-control-lg form-control-solid h-60px' />
+        {/* <div className='text-danger mt-2'>
+          <ErrorMessage name='Experince' />
+        </div> */}
       </div>
 
       <div className='fv-row mb-10'>
@@ -32,7 +40,7 @@ const Step3: FC = () => {
 
         <Field
           name='companyName'
-          className='form-control form-control-lg form-control-solid'
+          className='form-control form-control-lg form-control-solid h-60px'
         />
         <div className='text-danger mt-2'>
           <ErrorMessage name='companyName' />
@@ -64,16 +72,7 @@ const Step3: FC = () => {
         </div>
       </div> */}
 
-      <div className='fv-row mb-10 mt-3'>
-        <label className='form-label'>The skills/job experience you would like to highlight about yourself</label>
-
-        <Field
-          as='textarea'
-          name='skillHighlight'
-          className='form-control form-control-lg form-control-solid'
-          rows={6}
-        ></Field>
-      </div>
+      
 
     
 

@@ -1,17 +1,19 @@
 import {useEffect} from 'react'
-import {Navigate, Routes} from 'react-router-dom'
+import {Navigate} from 'react-router-dom'
 import {useAuth} from './core/Auth'
+// import { useLogoutUserMutation } from '../../service/user_api'
 
 export function Logout() {
+  // const [logoutUser,{isSuccess}]=useLogoutUserMutation()
   const {logout} = useAuth()
   useEffect(() => {
-    logout()
-    document.location.reload()
+    // logoutUser({})
+      logout()
+      document.location.reload()
+    
   }, [logout])
 
   return (
-    <Routes>
       <Navigate to='/auth/login' />
-    </Routes>
   )
 }
