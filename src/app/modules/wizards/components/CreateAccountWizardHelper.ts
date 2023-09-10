@@ -15,11 +15,11 @@ const createAccountSchemas = [
     companyName: Yup.string().required().label('company name'),
     // : Yup.string().required().label('company name'),
   }),
-  // Yup.object({
-  //   jobTitle: Yup.string().required().label('job title'),
-  //   skillHighlight: Yup.string().required().label('skill highlight'),
-  //   resume: Yup.string().required().label('resume'),
-  // }),
+  Yup.object({
+    jobTitle: Yup.string().required().label('job title'),
+    skillHighlight: Yup.string().required().label('skill highlight'),
+    // resume: Yup.string().required().label('resume'),
+  }),
   // Yup.object({
   //   businessName: Yup.string().required().label('Business Name'),
   //   businessDescriptor: Yup.string().required().label('Shortened Descriptor'),
