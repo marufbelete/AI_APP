@@ -23,15 +23,19 @@ const DashboardPage: FC = () => (
     {/* begin::Row */}
     <div className='row g-5 g-xl-10 mb-5 mb-xl-10'>
       {/* begin::Col */}
-      <div className='col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10'>
-        <CardsWidget20
-          className='h-md-50 mb-5 mb-xl-10'
+      <div className='row'>
+      <div className='col-md-6'>
+        {/* <CardsWidget20
+          className='h-md-220px  mb-5 mb-xl-10'
           description='Active Projects'
           color='#F1416C'
           img={toAbsoluteUrl('/media/patterns/vector-1.png')}
-        />
+        /> */}
+        <ListsWidget26 className='h-md-220px' />
+        </div>
+        <div className='col-md-6'>
         <CardsWidget7
-          className='h-md-50 mb-5 mb-xl-10'
+          className='h-md-220px mb-5 mb-xl-10'
           description='Professionals'
           icon={false}
           stats={357}
@@ -39,13 +43,14 @@ const DashboardPage: FC = () => (
           textColor='gray-300'
         />
       </div>
+      </div>
       {/* end::Col */}
 
       {/* begin::Col */}
-      <div className='col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10'>
+      {/* <div className='col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10'>
         <CardsWidget17 className='h-md-50 mb-5 mb-xl-10' />
         <ListsWidget26 className='h-lg-50' />
-      </div>
+      </div> */}
       {/* end::Col */}
 
       {/* begin::Col */}
@@ -77,21 +82,21 @@ const DashboardPage: FC = () => (
       <div className='col-xxl-4'>
         <ListsWidget3 className='card-xxl-stretch mb-xl-3' />
       </div>
-      <div className='col-xl-8'>
+      {/* <div className='col-xl-8'>
         <TablesWidget10 className='card-xxl-stretch mb-5 mb-xl-8' />
-      </div>
+      </div> */}
     </div>
     {/* end::Row */}
 
     {/* begin::Row */}
-    <div className='row gy-5 g-xl-8'>
-      <div className='col-xl-4'>
+    <div className='row gy-5 g-xl-12'>
+      {/* <div className='col-xl-4'>
         <ListsWidget2 className='card-xl-stretch mb-xl-8' />
-      </div>
-      <div className='col-xl-4'>
+      </div> */}
+      <div className='col-xl-6'>
         <ListsWidget6 className='card-xl-stretch mb-xl-8' />
       </div>
-      <div className='col-xl-4'>
+      <div className='col-xl-6'>
         <ListsWidget4 className='card-xl-stretch mb-5 mb-xl-8' items={5} />
         {/* partials/widgets/lists/_widget-4', 'class' => 'card-xl-stretch mb-5 mb-xl-8', 'items' => '5' */}
       </div>

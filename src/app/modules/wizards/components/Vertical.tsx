@@ -8,7 +8,7 @@ import {Step6} from './steps/Step6'
 import {KTIcon} from '../../../../_metronic/helpers'
 import {StepperComponent} from '../../../../_metronic/assets/ts/components'
 import {Form, Formik, FormikValues} from 'formik'
-import {createAccountSchemas, ICreateCoverLetter, inits} from './CreateAccountWizardHelper'
+import {createAccountSchemas, ICreateCoverLetter, inits} from './CreateAccountWizardHelper copy'
 import { useGenerateCoverLetterMutation } from '../../../service/user_api'
 
 const Vertical = () => {
