@@ -18,6 +18,16 @@ export const userApi=createApi({
             }),
             
         }),
+
+        generateFieldInfo:builder.mutation<any,any>({
+            query:data=>({
+                url:"/ai/fieldinfo",
+                method:"POST",
+                body:data,
+            }),
+            
+        }),
+
         registerUser:builder.mutation<any,any>({
             query:data=>({
                 url:"/auth/signup",
@@ -53,5 +63,6 @@ useGenerateCoverLetterMutation,
 useLoginUserMutation,
 useLogoutUserMutation,
 useRegisterUserMutation,
-useCheckAuthMutation
+useCheckAuthMutation,
+useGenerateFieldInfoMutation
 }=userApi

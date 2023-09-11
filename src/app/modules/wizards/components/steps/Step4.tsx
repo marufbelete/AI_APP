@@ -5,7 +5,13 @@ import {ErrorMessage, Field} from 'formik'
 const Step4: FC = () => {
   return (
     <div className='w-100'>
-      <div className='pb-10 pb-lg-15'>
+       <div className='pb-10 pb-lg-12'>
+        <h2 className='fw-bolder text-dark'>AI COVER LETTER WRITER</h2>
+        <div className='text-gray-400 fw-bold fs-6 mt-3'>
+        Generate a professional cover letter in seconds! Just provide the job title, name of the company, and the skills/job experience you would like to highlight about yourself.
+        </div>
+      </div>
+      {/* <div className='pb-10 pb-lg-15'>
         <h2 className='fw-bolder text-dark'>Billing Details</h2>
 
         <div className='text-gray-400 fw-bold fs-6'>
@@ -16,8 +22,8 @@ const Step4: FC = () => {
           </a>
           .
         </div>
-      </div>
-
+      </div> */}
+{/* 
       <div className='d-flex flex-column mb-7 fv-row'>
         <label className='d-flex align-items-center fs-6 fw-bold form-label mb-2'>
           <span className='required'>Name On Card</span>
@@ -37,8 +43,8 @@ const Step4: FC = () => {
         <div className='text-danger mt-2'>
           <ErrorMessage name='nameOnCard' />
         </div>
-      </div>
-
+      </div> */}
+{/* 
       <div className='d-flex flex-column mb-7 fv-row'>
         <label className='required fs-6 fw-bold form-label mb-2'>Card Number</label>
 
@@ -67,56 +73,44 @@ const Step4: FC = () => {
             />
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className='row mb-10'>
-        <div className='col-md-8 fv-row'>
-          <label className='required fs-6 fw-bold form-label mb-2'>Expiration Date</label>
+     
+        <div className='d-flex flex-column fv-row'>
+          <label className='required fs-6 fw-bold form-label mb-2'>Field/Department</label>
+          <div className='row fv-row mb-2'>
+              <Field as='select' name='field' className='form-select form-select-solid h-60px'>
+                <option>Select Field</option>
+                <option value='Business and IT'>Business and IT</option>
+              </Field>
+              <div className='text-danger mt-2'>
+                <ErrorMessage name='field' />
+             </div>
+            </div>
 
+          <div className='d-flex flex-column fv-row'>
+          <label className='required fs-6 fw-bold form-label mb-2'>Training/Opportunity</label>
           <div className='row fv-row'>
-            <div className='col-6'>
-              <Field as='select' name='cardExpiryMonth' className='form-select form-select-solid'>
-                <option></option>
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-                <option value='3'>3</option>
-                <option value='4'>4</option>
-                <option value='5'>5</option>
-                <option value='6'>6</option>
-                <option value='7'>7</option>
-                <option value='8'>8</option>
-                <option value='9'>9</option>
-                <option value='10'>10</option>
-                <option value='11'>11</option>
-                <option value='12'>12</option>
+              <Field as='select' name='training' className='form-select form-select-solid h-60px'>
+                <option>Select training</option>
+                <option value='BAS Agent Registration Skill Set'>BAS Agent Registration Skill Set</option>
+                <option value='Certificate III in Accounts Administration'>Certificate III in Accounts Administration</option>
+                <option value='Certificate IV in Accounting and Bookkeeping'>Certificate IV in Accounting and Bookkeeping</option>
+                <option value='Certificate IV in Leadership and Management'>Certificate IV in Leadership and Management</option>
+                <option value='Certificate IV in Project Management Practice'>Certificate IV in Project Management Practice</option>
+                <option value='Diploma of Business'>Diploma of Business</option>
+                <option value='Diploma of Leadership and Management'>Diploma of Leadership and Management</option>
+                <option value='Diploma of Project Management'>Diploma of Project Management</option>
+                <option value='Certificate III in Business'>Certificate III in Business</option>
+                <option value='Certificate IV in Cyber Security'>Certificate IV in Cyber Security</option>
+                <option value='Certificate III in Information Technology'>Certificate III in Information Technology</option>
               </Field>
               <div className='text-danger mt-2'>
-                <ErrorMessage name='cardExpiryMonth' />
+                <ErrorMessage name='training' />
               </div>
-            </div>
-
-            <div className='col-6'>
-              <Field as='select' name='cardExpiryYear' className='form-select form-select-solid'>
-                <option></option>
-                <option value='2021'>2021</option>
-                <option value='2022'>2022</option>
-                <option value='2023'>2023</option>
-                <option value='2024'>2024</option>
-                <option value='2025'>2025</option>
-                <option value='2026'>2026</option>
-                <option value='2027'>2027</option>
-                <option value='2028'>2028</option>
-                <option value='2029'>2029</option>
-                <option value='2030'>2030</option>
-                <option value='2031'>2031</option>
-              </Field>
-              <div className='text-danger mt-2'>
-                <ErrorMessage name='cardExpiryYear' />
-              </div>
-            </div>
           </div>
         </div>
-
+{/* 
         <div className='col-md-4 fv-row'>
           <label className='d-flex align-items-center fs-6 fw-bold form-label mb-2'>
             <span className='required'>CVV</span>
@@ -144,10 +138,10 @@ const Step4: FC = () => {
               <KTIcon iconName='credit-cart' className='fs-2hx' />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
-      <div className='d-flex flex-stack'>
+      {/* <div className='d-flex flex-stack'>
         <div className='me-5'>
           <label className='fs-6 fw-bold form-label'>Save Card for further billing?</label>
           <div className='fs-7 fw-bold text-gray-400'>
@@ -159,7 +153,7 @@ const Step4: FC = () => {
           <Field className='form-check-input' type='checkbox' value='1' checked={true} />
           <span className='form-check-label fw-bold text-gray-400'>Save Card</span>
         </label>
-      </div>
+      </div> */}
     </div>
   )
 }

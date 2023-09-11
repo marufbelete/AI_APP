@@ -10,7 +10,6 @@ import {StepperComponent} from '../../../../_metronic/assets/ts/components'
 import {Form, Formik, FormikValues} from 'formik'
 import {createAccountSchemas, ICreateCoverLetter, inits} from './CreateAccountWizardHelper'
 import { useGenerateCoverLetterMutation } from '../../../service/user_api'
-// import { fetchEventSource } from  "@microsoft/fetch-event-source";
 
 const Vertical = () => {
   const stepperRef = useRef<HTMLDivElement | null>(null)
@@ -23,7 +22,6 @@ const Vertical = () => {
   const [coverLetter, setCoverLetter] = useState('');
   const [showSnippet, setShowSnippet] = useState(false);
   
-  // const SSE_URL = 'http://localhost:7000/api/ai/coverletter'
  
 
   const loadStepper = () => {
@@ -41,11 +39,9 @@ const Vertical = () => {
   }
 
   const submitStep = (values: ICreateCoverLetter, actions: FormikValues) => {
-   console.log( stepper?.current?.currentStepIndex , stepper.current?.totalStepsNumber)
-  
-    
   btnRef.current?.setAttribute('data-kt-indicator', 'on');
- 
+  console.log(stepper?.current?.currentStepIndex,stepper.current?.totalStepsNumber)  
+
     if (!stepper.current) {
       return
     }
@@ -167,7 +163,7 @@ const Vertical = () => {
                   <Step1 />
                 </div>
                 <div data-kt-stepper-element='content'>
-                  <Step6 coverLetter={coverLetter}/>
+                  <Step6 coverLetter={coverLetter} title="Cover Letter"/>
                 </div>
                
 {/* 

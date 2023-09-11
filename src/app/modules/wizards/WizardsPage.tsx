@@ -25,7 +25,7 @@ const WizardsPage = () => (
         path='horizontal'
         element={
           <>
-            <PageTitle breadcrumbs={wizardsBreadCrumbs}>Cover Letter</PageTitle>
+            <PageTitle breadcrumbs={wizardsBreadCrumbs}>Prompt Finder</PageTitle>
             <Horizontal />
           </>
         }
@@ -34,7 +34,7 @@ const WizardsPage = () => (
         path='vertical'
         element={
           <>
-            <PageTitle breadcrumbs={wizardsBreadCrumbs}>Vertical</PageTitle>
+            <PageTitle breadcrumbs={wizardsBreadCrumbs}>Cover Letter</PageTitle>
             <Vertical />
           </>
         }

@@ -7,8 +7,9 @@ import { BarWave } from "react-cssfx-loading";
 
 interface Step6Props {
   coverLetter: string;
+  title:string;
 }
-const Step6: FC <Step6Props>= ({coverLetter}) => {
+const Step6: FC <Step6Props>= ({coverLetter,title}) => {
   const [copied, setCopied] = useState(false)
   useEffect(() => {
     if (!copied) {
@@ -24,7 +25,7 @@ const Step6: FC <Step6Props>= ({coverLetter}) => {
  <div className='d-flex flex-center'>
  {coverLetter?
     <div>
-    <h2 className='fw-bolde text-dark'>Generated Letter</h2>
+    <h2 className='fw-bolde text-dark'>{title}</h2>
       <div className='card card-body bg-dark w-800px min-h-450px'>
       <div className='text-gray-400 fw-bold fs-4 d-flex justify-content-end p-0'>
             <CopyToClipboard text={coverLetter} onCopy={() => setCopied(true)}>
