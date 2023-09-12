@@ -1,8 +1,24 @@
-import React, {FC} from 'react'
+import React, {FC, useEffect,useState} from 'react'
 import {KTIcon, toAbsoluteUrl} from '../../../../../_metronic/helpers'
 import {ErrorMessage, Field} from 'formik'
+import { useGetFieldsQuery, useGetTrainingsQuery } from '../../../../service/user_api'
+import { useField,useFormikContext } from 'formik';
+
+
 
 const Step4: FC = () => {
+  interface FormValues {
+    field: string; 
+  }
+  const { values } = useFormikContext<FormValues>();
+  const {data}= useGetFieldsQuery('')
+  const {data:trainingData,isFetching,refetch}= useGetTrainingsQuery({
+    field:values.field
+   })
+
+  useEffect(()=>{
+   refetch()
+  },[values.field])
   return (
     <div className='w-100'>
        <div className='pb-10 pb-lg-12'>
@@ -79,10 +95,13 @@ const Step4: FC = () => {
         <div className='d-flex flex-column fv-row'>
           <label className='required fs-6 fw-bold form-label mb-2'>Field/Department</label>
           <div className='row fv-row mb-2'>
-              <Field as='select' name='field' className='form-select form-select-solid h-60px'>
-                <option>Select Field</option>
-                <option value='Business and IT'>Business and IT</option>
-              </Field>
+          <Field as='select' name='field' className='form-select form-select-solid h-60px pb-3'>
+            <option value={''}>Select Field</option>
+            {data?.map((field, index) => (
+              <option key={index} value={field}>{field}</option>
+            ))}
+          </Field>
+              
               <div className='text-danger mt-2'>
                 <ErrorMessage name='field' />
              </div>
@@ -92,8 +111,11 @@ const Step4: FC = () => {
           <label className='required fs-6 fw-bold form-label mb-2'>Training/Opportunity</label>
           <div className='row fv-row'>
               <Field as='select' name='training' className='form-select form-select-solid h-60px'>
-                <option>Select training</option>
-                <option value='BAS Agent Registration Skill Set'>BAS Agent Registration Skill Set</option>
+                <option value={''}>Select training</option>
+                {trainingData?.map((field, index) => (
+              <option key={index} value={field}>{field}</option>
+            ))}
+                {/* <option value='BAS Agent Registration Skill Set'>BAS Agent Registration Skill Set</option>
                 <option value='Certificate III in Accounts Administration'>Certificate III in Accounts Administration</option>
                 <option value='Certificate IV in Accounting and Bookkeeping'>Certificate IV in Accounting and Bookkeeping</option>
                 <option value='Certificate IV in Leadership and Management'>Certificate IV in Leadership and Management</option>
@@ -103,7 +125,7 @@ const Step4: FC = () => {
                 <option value='Diploma of Project Management'>Diploma of Project Management</option>
                 <option value='Certificate III in Business'>Certificate III in Business</option>
                 <option value='Certificate IV in Cyber Security'>Certificate IV in Cyber Security</option>
-                <option value='Certificate III in Information Technology'>Certificate III in Information Technology</option>
+                <option value='Certificate III in Information Technology'>Certificate III in Information Technology</option> */}
               </Field>
               <div className='text-danger mt-2'>
                 <ErrorMessage name='training' />

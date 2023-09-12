@@ -55,7 +55,25 @@ export const userApi=createApi({
                 method:"POST"
             }),
         }),
+        getFields:builder.query<any,any>({
+            query:data=>({
+                url:"/ai/fields",
+                method:"GET"
+            }),
+        }),
+        getTrainings:builder.query<any,any>({
+            query:data=>({
+                url:"/ai/trainings",
+                method:"GET",
+                params:{
+                    field:data.field
+                }
+            }),
+        }),
+
+
    }),
+   
 })
 
 export const {
@@ -64,5 +82,7 @@ useLoginUserMutation,
 useLogoutUserMutation,
 useRegisterUserMutation,
 useCheckAuthMutation,
-useGenerateFieldInfoMutation
+useGenerateFieldInfoMutation,
+useGetFieldsQuery,
+useGetTrainingsQuery
 }=userApi
