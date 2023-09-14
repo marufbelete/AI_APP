@@ -4,8 +4,9 @@ export const userApi=createApi({
     reducerPath:"userApi",
     tagTypes:["Auth"],
     baseQuery:fetchBaseQuery({
-        baseUrl:"http://localhost:7000/api",
-        // baseUrl:"https://ai-api-l8mn.onrender.com/api",
+        // baseUrl:"http://localhost:7000/api",
+        // baseUrl:"https://api.careercompanion.au/api",
+        baseUrl:"https://ai-api-l8mn.onrender.com/api",
         credentials: "include",
     }),
         endpoints:(builder)=>({

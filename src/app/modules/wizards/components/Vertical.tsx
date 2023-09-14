@@ -8,7 +8,7 @@ import {Step6} from './steps/Step6'
 import {KTIcon} from '../../../../_metronic/helpers'
 import {StepperComponent} from '../../../../_metronic/assets/ts/components'
 import {Form, Formik, FormikValues} from 'formik'
-import {createAccountSchemas, ICreateCoverLetter, inits} from './CreateAccountWizardHelper copy'
+import {createAccountSchemas, ICreateCoverLetter, inits} from './CreateAccountWizardHelper'
 import { useGenerateCoverLetterMutation } from '../../../service/user_api'
 
 const Vertical = () => {
@@ -56,38 +56,13 @@ const Vertical = () => {
        generateCoverLetter({
       job_title:values.jobTitle,
       company_name:values.companyName,
-      skill_highlight:values.skillHighlight
+      skill_highlight:values.skillHighlight,
+      resume:values.resume,
+      full_name:values.fullName,
+      year_experince:values.yearExperince
     })
     stepper.current.goNext()
-    // const fetchData = async () => {
-    //   await fetchEventSource(SSE_URL, {
-    //     method: "POST",
-    //     body:JSON.stringify({
-    //       job_title:"nodejs developer",
-    //       company_name:"google",
-    //       skill_highlight:"API developmetn"
-    //     }),
-    //     headers: {
-    //       Accept: "text/event-stream",
-    //       "Content-Type": "application/json"
-          
-    //     },
-    //     onmessage(event) {
-    //       console.log(event.data);
-    //       const parsedData = JSON.parse(event.data);
-    //       setCoverLetter((data) => data+parsedData);
-    //     },
-    //     onclose() {
 
-    //       console.log("Connection closed by the server");
-    //     },
-    //     onerror(err) {
-    //       throw err
-    //       console.log("There was an error from server", err);
-    //     },
-    //   });
-    // };
-    // fetchData();
     }
 
     setSubmitButton(stepper.current.currentStepIndex+1 === stepper.current.totalStepsNumber)
@@ -98,6 +73,7 @@ const Vertical = () => {
   useEffect(()=>{
     btnRef.current?.removeAttribute("data-kt-indicator");
     if(isSuccess){
+      
       setCoverLetter(data)
       setShowSnippet(!showSnippet);
     }
@@ -116,38 +92,126 @@ const Vertical = () => {
 
 
   return (
-    <div className='card'>
-      <div className='card-body'>
-        <div
-          ref={stepperRef}
-          className='stepper stepper-links d-flex flex-column pt-15'
-          id='kt_create_account_stepper'
-        >
-          <div className='stepper-nav mb-5'>
-            <div className='stepper-item current' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Personal Info</h3>
-            </div>
+    // <div className='card'>
+    //   <div className='card-body'>
+    //     <div
+    //       ref={stepperRef}
+    //       className='stepper stepper-links d-flex flex-column pt-15'
+    //       id='kt_create_account_stepper'
+    //     >
+    //       <div className='stepper-nav mb-5'>
+    //         <div className='stepper-item current' data-kt-stepper-element='nav'>
+    //           <h3 className='stepper-title'>Personal Info</h3>
+    //         </div>
 
-            <div className='stepper-item' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Job Info</h3>
-            </div>
+    //         <div className='stepper-item' data-kt-stepper-element='nav'>
+    //           <h3 className='stepper-title'>Job Info</h3>
+    //         </div>
 
-           <div className='stepper-item' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Cover Letter</h3>
-            </div>
- {/* 
-            <div className='stepper-item' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Billing Details</h3>
-            </div>
+    //        <div className='stepper-item' data-kt-stepper-element='nav'>
+    //           <h3 className='stepper-title'>Cover Letter</h3>
+    //         </div>
+    //       </div>
+    <div
+    ref={stepperRef}
+    className='stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid'
+    id='kt_create_account_stepper'
+  >
+    {/* begin::Aside*/}
+    <div className='card d-flex justify-content-center justify-content-xl-start flex-row-auto w-100 w-xl-300px w-xxl-400px me-9'>
+      {/* begin::Wrapper*/}
+      <div className='card-body px-6 px-lg-10 px-xxl-15 py-20'>
+        {/* begin::Nav*/}
+        <div className='stepper-nav'>
+          {/* begin::Step 1*/}
+          <div className='stepper-item current' data-kt-stepper-element='nav'>
+            {/* begin::Wrapper*/}
+            <div className='stepper-wrapper'>
+              {/* begin::Icon*/}
+              <div className='stepper-icon w-40px h-40px'>
+                <i className='stepper-check fas fa-check'></i>
+                <span className='stepper-number'>1</span>
+              </div>
+              {/* end::Icon*/}
 
-            <div className='stepper-item' data-kt-stepper-element='nav'>
-              <h3 className='stepper-title'>Completed</h3>
-            </div> */}
+              {/* begin::Label*/}
+              <div className='stepper-label'>
+                <h3 className='stepper-title'>Personal Info</h3>
+                <div className='stepper-desc fw-semibold'>Add Your Personal Details</div>
+              </div>
+              {/* end::Label*/}
+            </div>
+            {/* end::Wrapper*/}
+
+            {/* begin::Line*/}
+            <div className='stepper-line h-40px'></div>
+            {/* end::Line*/}
           </div>
+          {/* end::Step 1*/}
+
+          {/* begin::Step 2*/}
+          <div className='stepper-item' data-kt-stepper-element='nav'>
+            {/* begin::Wrapper*/}
+            <div className='stepper-wrapper'>
+              {/* begin::Icon*/}
+              <div className='stepper-icon w-40px h-40px'>
+                <i className='stepper-check fas fa-check'></i>
+                <span className='stepper-number'>2</span>
+              </div>
+              {/* end::Icon*/}
+
+              {/* begin::Label*/}
+              <div className='stepper-label'>
+                <h3 className='stepper-title'>Job Info</h3>
+                <div className='stepper-desc fw-semibold'>Add Your Job Info</div>
+              </div>
+              {/* end::Label*/}
+            </div>
+            {/* end::Wrapper*/}
+
+            {/* begin::Line*/}
+            <div className='stepper-line h-40px'></div>
+            {/* end::Line*/}
+          </div>
+          {/* end::Step 2*/}
+
+          {/* begin::Step 3*/}
+          <div className='stepper-item' data-kt-stepper-element='nav'>
+            {/* begin::Wrapper*/}
+            <div className='stepper-wrapper'>
+              {/* begin::Icon*/}
+              <div className='stepper-icon w-40px h-40px'>
+                <i className='stepper-check fas fa-check'></i>
+                <span className='stepper-number'>3</span>
+              </div>
+              {/* end::Icon*/}
+
+              {/* begin::Label*/}
+              <div className='stepper-label'>
+                <h3 className='stepper-title'>Cover Letter</h3>
+                <div className='stepper-desc fw-semibold'>Get Professional Cover Letter</div>
+              </div>
+              {/* end::Label*/}
+            </div>
+            {/* end::Wrapper*/}
+
+            {/* begin::Line*/}
+            <div className='stepper-line h-40px'></div>
+            {/* end::Line*/}
+          </div>
+          {/* end::Step 3*/}
+        </div>
+        {/* end::Nav*/}
+      </div>
+      {/* end::Wrapper*/}
+    </div>
+    {/* begin::Aside*/}
+    <div className='d-flex flex-row-fluid flex-center bg-body rounded'>
 
           <Formik validationSchema={currentSchema} initialValues={initValues} onSubmit={submitStep}>
             {() => (
-              <Form className='mx-auto mw-600px w-100 pt-15 pb-10' id='kt_create_account_form'>
+   
+              <Form className='py-20 w-100 w-xl-700px px-9' id='kt_create_account_form'>
                 {/* <div className='current' data-kt-stepper-element='content'>
                   <Step1 />
                 </div>
@@ -165,11 +229,6 @@ const Vertical = () => {
                 <div data-kt-stepper-element='content'>
                   <Step6 coverLetter={coverLetter} title="Cover Letter"/>
                 </div>
-               
-{/* 
-                <div data-kt-stepper-element='content'>
-                  <Step5 />
-                </div> */}
 
                 <div className='d-flex flex-stack pt-15'>
                 {!isLoading &&<div className='mr-2'>
@@ -216,7 +275,7 @@ const Vertical = () => {
         
       </div>
         </div>
-    </div>
+    // </div>
   )
 }
 
