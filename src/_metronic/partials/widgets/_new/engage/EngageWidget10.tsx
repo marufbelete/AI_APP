@@ -18,26 +18,26 @@ const EngageWidget10 = ({className}: Props) => (
       <div className='mb-10'>
         <div className='fs-2hx fw-bold text-gray-800 text-center mb-13'>
           <span className='me-2'>
-            Try our all new Enviroment with
+          Welcome to your Smart Career Companion
             <br />
-            <span className='position-relative d-inline-block text-danger'>
+            {/* <span className='position-relative d-inline-block text-danger'>
               <Link
                 to='/crafted/pages/profile/overview'
                 className='text-danger
               opacity-75-hover'
               >
-                Pro Plan
+               Try Our Pro Plan
               </Link>
 
               <span className='position-absolute opacity-15 bottom-0 start-0 border-4 border-danger border-bottom w-100'></span>
-            </span>
+            </span> */}
           </span>
-          for Free
+          Powered by ACDP
         </div>
 
-        <div className='text-center'>
+        {/* <div className='text-center'>
           <a href='#'>Upgrade Now</a>
-        </div>
+        </div> */}
       </div>
       <img
         className='mx-auto h-150px h-lg-200px  theme-light-show'

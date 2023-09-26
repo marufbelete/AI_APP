@@ -24,14 +24,14 @@ const SidebarMenuMain = () => {
         </div>
       </div>
       <SidebarMenuItem
-          title='Prompt Finder'
-          icon='element-plus'
-          to='/crafted/pages/wizards/horizontal'
+          title='Career Guide'
+          icon='book-open'
+          to='/ai/career-guide'
         />
       <SidebarMenuItem
           title='Cover Letter'
-          icon='element-plus'
-          to='/crafted/pages/wizards/vertical'
+          icon='file'
+          to='/ai/cover-letter'
         />
       {/* <SidebarMenuItemWithSub
         to='/crafted/pages'

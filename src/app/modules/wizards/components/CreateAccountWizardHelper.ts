@@ -6,19 +6,22 @@ export interface ICreateCoverLetter {
   skillHighlight:string,
   fullName:string,
   resume:string,
+  jobDescription:string,
   yearExperince:string
 }
 
 const createAccountSchemas = [
   Yup.object({
-    fullName: Yup.string().required().label('full name'),
+    jobTitle: Yup.string().required().label('job title'),
+
+    // fullName: Yup.string().required().label('full name'),
     companyName: Yup.string().required().label('company name'),
     // : Yup.string().required().label('company name'),
   }),
   Yup.object({
-    jobTitle: Yup.string().required().label('job title'),
-    skillHighlight: Yup.string().required().label('skill highlight'),
-    // resume: Yup.string().required().label('resume'),
+    // jobTitle: Yup.string().required().label('job title'),
+    jobDescription: Yup.string().required().label('skill highlight'),
+    resume: Yup.string().required().label('resume'),
   }),
   // Yup.object({
   //   businessName: Yup.string().required().label('Business Name'),
@@ -41,7 +44,8 @@ const inits: ICreateCoverLetter = {
   skillHighlight:'',
   fullName:'',
   resume:'',
-  yearExperince:''
+  yearExperince:'',
+  jobDescription:''
 
 
 }

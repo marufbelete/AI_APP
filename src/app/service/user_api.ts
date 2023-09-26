@@ -5,8 +5,8 @@ export const userApi=createApi({
     tagTypes:["Auth"],
     baseQuery:fetchBaseQuery({
         // baseUrl:"http://localhost:7000/api",
-        // baseUrl:"https://api.careercompanion.au/api",
-        baseUrl:"https://ai-api-l8mn.onrender.com/api",
+        baseUrl:"https://api.careercompanion.au/api",
+        // baseUrl:"https://ai-api-l8mn.onrender.com/api",
         credentials: "include",
     }),
         endpoints:(builder)=>({
@@ -71,6 +71,34 @@ export const userApi=createApi({
                 }
             }),
         }),
+        uploadFile:builder.mutation<any,any>({
+            query:data=>({
+                url:"/ai/uploadxlsx",
+                method:"POST",
+                body:data
+            }),
+        }),
+        updateFile:builder.mutation<any,any>({
+            query:data=>({
+                url:"/ai/file",
+                method:"PUT",
+                body:data
+            }),
+        }),
+
+        deleteFile:builder.mutation<any,any>({
+            query:data=>({
+                url:`/ai/file/${data.id}`,
+                method:"DELETE",
+            }),
+        }),
+
+        readFile:builder.query<any,any>({
+            query:data=>({
+                url:'/ai/file',
+                method:"GET"
+            }),
+        }),
 
 
    }),
@@ -85,5 +113,9 @@ useRegisterUserMutation,
 useCheckAuthMutation,
 useGenerateFieldInfoMutation,
 useGetFieldsQuery,
-useGetTrainingsQuery
+useGetTrainingsQuery,
+useUploadFileMutation,
+useDeleteFileMutation,
+useReadFileQuery,
+useUpdateFileMutation
 }=userApi

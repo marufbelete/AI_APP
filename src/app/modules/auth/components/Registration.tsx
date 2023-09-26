@@ -110,16 +110,16 @@ export function Registration() {
         <h1 className='text-dark fw-bolder mb-3'>Sign Up</h1>
         {/* end::Title */}
 
-        <div className='text-gray-500 fw-semibold fs-6'>Your Social Campaigns</div>
+        {/* <div className='text-gray-500 fw-semibold fs-6'>WebHat Digital</div> */}
       </div>
       {/* end::Heading */}
 
       {/* begin::Login options */}
-      <div className='row g-3 mb-9'>
+      {/* <div className='row g-3 mb-9'> */}
         {/* begin::Col */}
-        <div className='col-md-6'>
+        {/* <div className='col-md-6'> */}
           {/* begin::Google link */}
-          <a
+          {/* <a
             href='#'
             className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
           >
@@ -129,15 +129,15 @@ export function Registration() {
               className='h-15px me-3'
             />
             Sign in with Google
-          </a>
+          </a> */}
           {/* end::Google link */}
-        </div>
+        {/* </div> */}
         {/* end::Col */}
 
         {/* begin::Col */}
-        <div className='col-md-6'>
+        {/* <div className='col-md-6'> */}
           {/* begin::Google link */}
-          <a
+          {/* <a
             href='#'
             className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
           >
@@ -153,15 +153,14 @@ export function Registration() {
             />
             Sign in with Apple
           </a>
-          {/* end::Google link */}
         </div>
-        {/* end::Col */}
-      </div>
+       
+      </div> */}
       {/* end::Login options */}
 
-      <div className='separator separator-content my-14'>
+      {/* <div className='separator separator-content my-14'>
         <span className='w-125px text-gray-500 fw-semibold fs-7'>Or with email</span>
-      </div>
+      </div> */}
 
       {formik.status && (
         <div className='mb-lg-15 alert alert-danger'>

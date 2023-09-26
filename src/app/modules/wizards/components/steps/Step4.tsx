@@ -22,9 +22,9 @@ const Step4: FC = () => {
   return (
     <div className='w-100'>
        <div className='pb-10 pb-lg-12'>
-        <h2 className='fw-bolder text-dark'>AI COVER LETTER WRITER</h2>
+        <h2 className='fw-bolder text-dark'>AI Career Guide</h2>
         <div className='text-gray-400 fw-bold fs-6 mt-3'>
-        Generate a professional cover letter in seconds! Just provide the job title, name of the company, and the skills/job experience you would like to highlight about yourself.
+        Discover your dream career with the AI Career Guide! Whether you're a recent graduate or looking to make a career change, this powerful tool is designed to assist you!
         </div>
       </div>
       {/* <div className='pb-10 pb-lg-15'>

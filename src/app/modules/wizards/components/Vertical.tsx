@@ -40,7 +40,7 @@ const Vertical = () => {
 
   const submitStep = (values: ICreateCoverLetter, actions: FormikValues) => {
   btnRef.current?.setAttribute('data-kt-indicator', 'on');
-  console.log(stepper?.current?.currentStepIndex,stepper.current?.totalStepsNumber)  
+  // console.log(stepper?.current?.currentStepIndex,stepper.current?.totalStepsNumber)  
 
     if (!stepper.current) {
       return
@@ -49,17 +49,16 @@ const Vertical = () => {
     if (stepper.current.currentStepIndex !== stepper.current.totalStepsNumber-1) {
       stepper.current.goNext()
     } else {
-      // stepper.current.goto(1)
-      // actions.resetForm()
-      console.log("send api")
       setCoverLetter('')
        generateCoverLetter({
       job_title:values.jobTitle,
       company_name:values.companyName,
-      skill_highlight:values.skillHighlight,
       resume:values.resume,
-      full_name:values.fullName,
-      year_experince:values.yearExperince
+      job_description:values.jobDescription
+
+      // skill_highlight:values.skillHighlight,
+      // full_name:values.fullName,
+      // year_experince:values.yearExperince,
     })
     stepper.current.goNext()
 

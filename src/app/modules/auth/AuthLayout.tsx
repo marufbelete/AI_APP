@@ -31,8 +31,7 @@ const AuthLayout = () => {
         {/* end::Form */}
 
         {/* begin::Footer */}
-        <div className='d-flex flex-center flex-wrap px-5'>
-          {/* begin::Links */}
+        {/* <div className='d-flex flex-center flex-wrap px-5'>
           <div className='d-flex fw-semibold text-primary fs-base'>
             <a href='#' className='px-5' target='_blank'>
               Terms
@@ -46,8 +45,7 @@ const AuthLayout = () => {
               Contact Us
             </a>
           </div>
-          {/* end::Links */}
-        </div>
+        </div> */}
         {/* end::Footer */}
       </div>
       {/* end::Body */}
@@ -58,24 +56,24 @@ const AuthLayout = () => {
         style={{backgroundImage: `url(${toAbsoluteUrl('/media/misc/auth-bg.png')})`}}
       >
         {/* begin::Content */}
-        <div className='d-flex flex-column flex-center py-15 px-5 px-md-15 w-100'>
+        <div className='d-flex flex-column flex-center mt-20 py-15 px-5 px-md-15 w-100'>
           {/* begin::Logo */}
-          <Link to='/' className='mb-12'>
+          {/* <Link to='/' className='mt-12 mb-12'>
             <img alt='Logo' src={toAbsoluteUrl('/media/logos/custom-1.png')} className='h-75px' />
-          </Link>
+          </Link> */}
           {/* end::Logo */}
 
           {/* begin::Image */}
           <img
             className='mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20'
-            src={toAbsoluteUrl('/media/misc/auth-screens.png')}
+            src={toAbsoluteUrl('/media/misc/auth-screens.webp')}
             alt=''
           />
           {/* end::Image */}
 
           {/* begin::Title */}
-          <h1 className='text-white fs-2qx fw-bolder text-center mb-7 pb-5'>
-            Fast, Efficient and Productive
+          <h1 className='text-white fs-2qx fw-bolder text-center mb-7 pb-20'>
+          Your Career Companion
           </h1>
           {/* end::Title */}
 

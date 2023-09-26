@@ -16,21 +16,29 @@ const Step3: FC = () => {
         </div>
       </div>
 
-      <div className='fv-row mb-10'>
+      {/* <div className='fv-row mb-10'>
         <label className='form-label required'>Your Full Name</label>
 
         <Field name='fullName' className='form-control form-control-lg form-control-solid h-60px' />
         <div className='text-danger mt-2'>
           <ErrorMessage name='fullName' />
         </div>
-      </div>
+      </div> */}
 
-      <div className='fv-row mb-10'>
+      {/* <div className='fv-row mb-10'>
         <label className='form-label'>Year Of Experince</label>
         <Field name='yearExperince' className='form-control form-control-lg form-control-solid h-60px' />
-        {/* <div className='text-danger mt-2'>
+        <div className='text-danger mt-2'>
           <ErrorMessage name='Experince' />
-        </div> */}
+        </div>
+      </div> */}
+       <div className='fv-row mb-10'>
+        <label className='form-label required'>The job title you are applying for</label>
+
+        <Field name='jobTitle' className='form-control form-control-lg form-control-solid h-60px' />
+        <div className='text-danger mt-2'>
+          <ErrorMessage name='jobTitle' />
+        </div>
       </div>
 
       <div className='fv-row mb-10'>

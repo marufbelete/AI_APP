@@ -11,11 +11,11 @@ export function MenuInner() {
       {/* <MenuItem title='Layout Builder' to='/builder' /> */}
       <MenuItem
           title='Cover Letter'
-          to='/crafted/pages/wizards/vertical'
+          to='/ai/cover-letter'
         />
       <MenuItem
-          title='Prompt Finder'
-          to='/crafted/pages/wizards/horizontal'
+          title='Career Guide'
+          to='/ai/career-guide'
         />
       {/* <MenuInnerWithSub
         title='Apps'

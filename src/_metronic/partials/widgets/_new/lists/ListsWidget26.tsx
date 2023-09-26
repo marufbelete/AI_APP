@@ -8,14 +8,14 @@ type Props = {
 
 const rows: Array<{description: string}> = [
   {description: 'Avg. Client Rating'},
-  {description: 'Instagram Followers'},
-  {description: 'Google Ads CPC'},
+  {description: 'Instagram '},
+  {description: 'Facebook'},
 ]
 
 const ListsWidget26 = ({className}: Props) => (
   <div className={`card card-flush ${className}`}>
     <div className='card-header pt-5'>
-      <h3 className='card-title text-gray-800 fw-bold'>External Links</h3>
+      <h3 className='card-title text-gray-800 fw-bolder'>External Link</h3>
       <div className='card-toolbar'></div>
     </div>
     <div className='card-body pt-5'>

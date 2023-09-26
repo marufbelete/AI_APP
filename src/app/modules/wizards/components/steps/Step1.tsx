@@ -7,14 +7,14 @@ const Step1: FC = () => {
   return (
     <div className='w-100'>
 
-        <div className='fv-row mb-10'>
+        {/* <div className='fv-row mb-10'>
         <label className='form-label required'>The job title you are applying for</label>
 
         <Field name='jobTitle' className='form-control form-control-lg form-control-solid h-60px' />
         <div className='text-danger mt-2'>
           <ErrorMessage name='jobTitle' />
         </div>
-      </div>
+      </div> */}
 
        <div className='fv-row mb-10 mt-3'>
         <label className='form-label'>Your resume </label>
@@ -22,14 +22,26 @@ const Step1: FC = () => {
           as='textarea'
           name='resume'
           className='form-control form-control-lg form-control-solid'
+          rows={8}
+        ></Field>
+        <div className='text-danger mt-2'>
+          <ErrorMessage name='resume' />
+        </div>
+      </div>
+       <div className='fv-row mb-10 mt-3'>
+        <label className='form-label'>Job description </label>
+        <Field
+          as='textarea'
+          name='jobDescription'
+          className='form-control form-control-lg form-control-solid'
           rows={6}
         ></Field>
-        {/* <div className='text-danger mt-2'>
-          <ErrorMessage name='resume' />
-        </div> */}
+        <div className='text-danger mt-2'>
+          <ErrorMessage name='jobDescription' />
+        </div>
       </div>
 
-      <div className='fv-row mb-10 mt-3'>
+      {/* <div className='fv-row mb-10 mt-3'>
         <label className='form-label required'>The skills/job experience you would like to highlight about yourself</label>
 
         <Field
@@ -38,10 +50,10 @@ const Step1: FC = () => {
           className='form-control form-control-lg form-control-solid'
           rows={6}
         ></Field>
-        {/* <div className='text-danger mt-2'>
+        <div className='text-danger mt-2'>
           <ErrorMessage name='skillHighlight' />
-        </div> */}
-      </div>
+        </div>
+      </div> */}
       {/* <div className='pb-10 pb-lg-15'>
         <h2 className='fw-bolder d-flex align-items-center text-dark'>
           Choose Account Type

@@ -33,7 +33,7 @@ const Step6: FC <Step6Props>= ({coverLetter,title}) => {
           </CopyToClipboard>
             </div>
           <div className='text-gray-400 fw-bold fs-4 mt-2 mb-10'>
-         {coverLetter?.split('<br>').map((e,i,arr)=>{
+         {coverLetter?.split('\n').map((e,i,arr)=>{
           if(i==0)e.replace(/\./g, "");
           if(i==arr.length-2){
             return <div>{e}</div>
